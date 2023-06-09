@@ -28,7 +28,7 @@ namespace MoodAnalyzer
             }
             if (message.Contains("I am in Happy Mood"))
             {
-                return SAD;
+                return HAPPY;
             }
             return null;
         }
