@@ -13,9 +13,13 @@ namespace MoodAnalyzer
         public string SAD = "SAD";
         public string AnalyzeMood(string mood)
         {
-            if (mood.ToLower().Contains("i am in sad mood"))
+            if(mood.Contains("I am in Sad mood"))
             {
                 return SAD;
+            }
+            if(mood.Contains("I am in Any Mood"))
+            {
+                return HAPPY;
             }
             return null;
         }
