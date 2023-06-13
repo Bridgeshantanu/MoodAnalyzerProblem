@@ -1,23 +1,45 @@
-﻿namespace MoodAnalyzer
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+
+
+namespace MoodAnalyzer
 {
     internal class Program
     {
+       
         static void Main(string[] args)
         {
+
+            string moodinput = "Null";
+            string moodinput1 = "Empty";
+
             try
             {
-                MoodAnalyser moodAnalyser = new MoodAnalyser(null);
-                string result = moodAnalyser.AnalyzeMood();
-                Console.WriteLine(result);
+                MoodAnalyser moodAnalyser = new MoodAnalyser();
+                string mood = moodAnalyser.AnalyzeMood(moodinput);
+
             }
-            catch (Exception ex)
+            catch (MoodAnalyserException ex)
             {
                 Console.WriteLine(ex.Message);
-            }  
 
-            MoodAnalyser moodAnalyser1 = new MoodAnalyser("I am in Happy Mood");
-            string result1 = moodAnalyser1.AnalyzeMood();
-            Console.WriteLine(result1);
+            }
+
+            try
+            {
+                MoodAnalyser moodAnalyser = new MoodAnalyser();
+                string mood1 = moodAnalyser.AnalyzeMood(moodinput1);
+
+            }
+            catch (MoodAnalyserException ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+
+
+
+
         }
     }
 }

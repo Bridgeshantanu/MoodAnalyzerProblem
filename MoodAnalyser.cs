@@ -4,34 +4,33 @@ using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoodAnalyzer
 {
-    public class MoodAnalyser
+    enum mood
     {
-        string message;
-        public string HAPPY = "HAPPY";
-        public string SAD = "SAD";
-        public MoodAnalyser()
+        Null, Empty
+    }
+    public class MoodAnalyser
+    { 
+        public string AnalyzeMood(string message)
         {
-            message = "";
-        }
-        public MoodAnalyser(string message)
-        {
-            this.message = message;
-        }
-        public string AnalyzeMood()
-        {
-            if (message.Contains("I am in Sad Mood"))
+            if(message == mood.Null.ToString())
             {
-                return SAD;
+                throw new MoodAnalyserException("mood is Null");
             }
-            if (message.Contains("I am in Happy Mood"))
+            if (message == mood.Empty.ToString())
             {
-                return HAPPY;
+                throw new MoodAnalyserException("Empty mood");
             }
             return null;
         }
+
+
+
+
+
 
     }
 
