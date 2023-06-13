@@ -12,13 +12,13 @@ namespace MoodAnalyzer
 
             try
             {
-                MoodAnalyser moodAnalyser = MoodAnalyserFactory.CreateMoodAnalyser("InvalidClassName");
+                MoodAnalyser moodAnalyser = MoodAnalyserFactory.CreateMoodAnalyser("Happy");
+                
             }
-            catch (Exception ex)
+            catch (MoodAnalyserException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
 
 
 

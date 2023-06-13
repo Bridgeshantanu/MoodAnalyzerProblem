@@ -9,21 +9,17 @@ namespace MoodAnalyzer
 {
     internal class MoodAnalyserFactory
     {
-        public static MoodAnalyser CreateMoodAnalyser(string className)
+        public static MoodAnalyser CreateMoodAnalyser(string mood)
         {
-            Type type = Type.GetType(className);
-            if (type == null)
-            {
-                throw new MoodAnalyserException("No such class error: " + className);
-            }
+            Type type = typeof(MoodAnalyser);
 
-            ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
+            ConstructorInfo constructor = type.GetConstructor(new[] { typeof(string) });
             if (constructor == null)
             {
-                throw new ArgumentException("MoodAnalyser does not have a default constructor.");
+                throw new MoodAnalyserException("No such constructor error: MoodAnalyser(string)");
             }
 
-            MoodAnalyser moodAnalyser = (MoodAnalyser)constructor.Invoke(null);
+            MoodAnalyser moodAnalyser = (MoodAnalyser)constructor.Invoke(new object[] { mood });
 
             return moodAnalyser;
         }
