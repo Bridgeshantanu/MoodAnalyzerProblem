@@ -5,33 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace MoodAnalyzer
 {
-    enum mood
-    {
-        Null, Empty
-    }
+    
     public class MoodAnalyser
-    { 
-        public string AnalyzeMood(string message)
+    {
+        public string mood;
+        public MoodAnalyser()
         {
-            if(message == mood.Null.ToString())
+            mood = "Unknown";
+        }
+
+        public bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
             {
-                throw new MoodAnalyserException("mood is Null");
+                return false;
             }
-            if (message == mood.Empty.ToString())
-            {
-                throw new MoodAnalyserException("Empty mood");
-            }
-            return null;
+
+            MoodAnalyser other = (MoodAnalyser)obj;
+
+            return mood == other.mood;
         }
 
 
 
 
 
-
-    }
-
+   
+     }
 }
