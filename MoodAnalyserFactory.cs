@@ -9,10 +9,14 @@ namespace MoodAnalyzer
 {
     internal class MoodAnalyserFactory
     {
-        public static MoodAnalyser CreateMoodAnalyser()
+        public static MoodAnalyser CreateMoodAnalyser(string className)
         {
-            Type type = typeof(MoodAnalyser);
-           
+            Type type = Type.GetType(className);
+            if (type == null)
+            {
+                throw new MoodAnalyserException("No such class error: " + className);
+            }
+
             ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
             if (constructor == null)
             {

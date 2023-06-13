@@ -10,12 +10,16 @@ namespace MoodAnalyzer
         static void Main(string[] args)
         {
 
-            MoodAnalyser moodAnalyser1 = MoodAnalyserFactory.CreateMoodAnalyser();
-            MoodAnalyser moodAnalyser2 = MoodAnalyserFactory.CreateMoodAnalyser();
+            try
+            {
+                MoodAnalyser moodAnalyser = MoodAnalyserFactory.CreateMoodAnalyser("InvalidClassName");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-            bool isEqual = moodAnalyser1.Equals(moodAnalyser2);
 
-            Console.WriteLine("MoodAnalyser objects equal = " + isEqual);
 
 
 
